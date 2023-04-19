@@ -1,10 +1,9 @@
-all: geometry
+CXX = g++
+CXXFLAGS = -Wall -Wextra -Wpedantic
 
 geometry: geometry.cpp
-	gcc -Wall -Werror -o geometry geometry.cpp
+	$(CXX) $(CXXFLAGS) -o geometry geometry.cpp
+.PHONY: clean
 
 clean:
-	rm geometry
-
-run:
-	./geometry
+	rm -f geometry
