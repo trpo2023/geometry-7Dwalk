@@ -1,4 +1,2 @@
 *.o
-.main.c.swp
-main.c~
-#main.c#
+.vscode
