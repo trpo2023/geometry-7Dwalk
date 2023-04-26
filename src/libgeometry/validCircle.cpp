@@ -1,4 +1,7 @@
 #include "validCircle.h"
+#include <iostream>
+#include <regex>
+#include <iomanip>
 
 bool validCircle(const std::string& input, Circle& circle)
 {

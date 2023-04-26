@@ -1,4 +1,6 @@
-#include "../libgeometry/validCircle.h"
+#include "libgeometry/validCircle.h"
+#include <iostream>
+#include <fstream>
 
 int main()
 {

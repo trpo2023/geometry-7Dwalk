@@ -11,7 +11,7 @@ LIB_PATH = $(OBJ_DIR)/$(SRC_DIR)/$(LIB_NAME)/$(LIB_NAME).a
 SRC_EXT = cpp
 CC = g++
 CFLAGS = -Wall -Werror -Wextra -pedantic -std=c++17 -g -fsanitize=address
-CPPFLAGS = -I src -MP -MMD
+CPPFLAGS = -Isrc -MP -MMD
 
 APP_SOURCES = $(shell find $(SRC_DIR)/$(APP_NAME) -name '*.$(SRC_EXT)')
 APP_OBJECTS = $(APP_SOURCES:$(SRC_DIR)/%.$(SRC_EXT)=$(OBJ_DIR)/$(SRC_DIR)/%.o)
@@ -34,6 +34,10 @@ $(LIB_PATH): $(LIB_OBJECTS)
 	
 $(OBJ_DIR)/%.o: %.cpp
 	$(CC) -c $(CFLAGS) $(CPPFLAGS) $< -o $@
+
+.PHONY: run
+run:
+	./bin/geometry
 
 .PHONY: clean
 clean:

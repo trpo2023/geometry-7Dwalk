@@ -1,11 +1,7 @@
 #ifndef validCircle_h
 #define validCircle_h
 
-#include <fstream>
-#include <iomanip>
 #include <iostream>
-#include <regex>
-
 struct Point {
     double x;
     double y;
