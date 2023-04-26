@@ -1,31 +1,18 @@
-#include <fstream>
+#include "validCircle.h"
 #include <iomanip>
-#include <iostream>
 #include <regex>
-
-struct Point {
-    double x;
-    double y;
-};
-
-struct Circle {
-    Point center;
-    double radius;
-    double area;
-    double perimeter;
-};
-
-const std::regex circle_check("^circle\\W");
-const std::regex op_cl_check("[()]$");
-const std::regex check_after_trash("([)])|([(])[ ]*$");
-const std::regex circle_regex_num(
-        "\\s*(\\d+\\.?\\d*).\\s*(\\d+\\.?\\d*),\\s*(\\d+\\.?\\d*)$");
-const std::regex values_regex(
-        "^[-]?[0-9]*[.]?[0-9][ ]+[-]?[0-9]*[.]?[0-9][,][ "
-        "]*[-]?[0-9]*[.]?[0-9]+$");
 
 bool validCircle(const std::string& input, Circle& circle)
 {
+    const std::regex circle_check("^circle\\W");
+    const std::regex op_cl_check("[()]$");
+    const std::regex check_after_trash("([)])|([(])[ ]*$");
+    const std::regex circle_regex_num(
+            "\\s*(\\d+\\.?\\d*).\\s*(\\d+\\.?\\d*),\\s*(\\d+\\.?\\d*)$");
+    const std::regex values_regex(
+            "^[-]?[0-9]*[.]?[0-9][ ]+[-]?[0-9]*[.]?[0-9][,][ "
+            "]*[-]?[0-9]*[.]?[0-9]+$");
+
     std::smatch match;
     std::string circle_str = input.substr(0, 7);
     std::string numExp = input.substr(7, input.size() - 8);
@@ -76,26 +63,4 @@ bool validCircle(const std::string& input, Circle& circle)
         circle.perimeter = 2 * 3.14 * circle.radius;
     }
     return true;
-}
-
-int main()
-{
-    Circle circle;
-    std::string file = "Input_Data";
-    std::string line;
-    std::ifstream in(file);
-    if (in.is_open()) {
-        while (getline(in, line)) {
-            if (validCircle(line, circle)) {
-                std::cout << line << std::endl
-                          << "perimeter = " << std::setprecision(3)
-                          << circle.perimeter << std::endl
-                          << "area = " << std::setprecision(3) << circle.area
-                          << std::endl
-                          << std::endl;
-            }
-        }
-    }
-    in.close();
-    return 0;
 }
